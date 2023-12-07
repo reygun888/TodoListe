@@ -1,0 +1,30 @@
+
+    <div class="titre">
+      <h1 class="text-center my-3">Exercice à faire</h1>
+    </div>
+
+
+<div class="card mt-5">
+
+    <h2 class="my-3 mx-3">Listes des taches</h2>
+
+        <form (submit)="addtodos($event, input.value)" class="w-50 m-auto">
+            <label>Ajouter une tache</label>
+            <input #input class="form-control my-3"type="text">
+            <button class="btn btn-primary">Ajouter</button>
+        </form>
+
+    <h3 *ngIf="taches.length === 0" class=" text-center my-5">Vous avez terminez les taches</h3>
+
+    <ul *ngIf="taches.length > 0" class=" my-5">
+        <li *ngFor="let tache of taches" [style.backgroundColor]=" tache.fait ? 'aqua' :''" class="card my-5">
+
+            <div class="d-flex align-items-center">
+                <h5 class=" mt-3 mx-4">{{ tache.tache }}</h5>
+                <input (change)="toggleDone(tache.id)"class="mt-2" type="checkbox"[checked]="tache.fait">
+            </div>
+        
+            <button (click)="deletetodos(tache.id)"class="btn btn-danger mx-4 my-2 w-3">Supprimer</button>
+        </li>
+    </ul>
+</div>
